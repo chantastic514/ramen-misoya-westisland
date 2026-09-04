@@ -1953,30 +1953,130 @@ body.modal-open {
   }
 
 
+  const popupTranslations = {
+
+  fr: {
+    title: "Vous avez trouvé Lucky! 🐕",
+    intro:
+      "Présentez ce passcode chez Ramen Misoya Ouest-de-l’Île pour profiter de l’une des deux offres secrètes.",
+    passcodeLabel: "VOTRE PASSCODE",
+    dates:
+      "Valide du 10 au 20 septembre 2026 inclusivement",
+    locationOnly:
+      "Uniquement chez Ramen Misoya Ouest-de-l’Île",
+    button:
+      "Parfait! 🐾"
+  },
+
+  en: {
+    title: "You found Lucky! 🐕",
+    intro:
+      "Show this passcode at Ramen Misoya West Island to enjoy one of the two secret deals.",
+    passcodeLabel: "YOUR PASSCODE",
+    dates:
+      "Valid September 10–20, 2026, inclusive",
+    locationOnly:
+      "Only at Ramen Misoya West Island",
+    button:
+      "Got it! 🐾"
+  }
+
+};
+
+
+function updateLuckyPopupLanguage() {
+
+  const lang =
+    currentLanguage === "en"
+      ? "en"
+      : "fr";
+
   document
-    .getElementById("secretForm")
-    .addEventListener(
-      "submit",
-      function(event) {
+    .querySelectorAll("[data-popup-i18n]")
+    .forEach(function(element) {
 
-        event.preventDefault();
+      const key =
+        element.getAttribute("data-popup-i18n");
 
-        if (currentLanguage === "fr") {
-
-          alert(
-            "Formulaire de démonstration — connectez-le à votre outil d’email/CRM avant la mise en ligne."
-          );
-
-        } else {
-
-          alert(
-            "Demo form — connect it to your email/CRM platform before publishing."
-          );
-
-        }
-
+      if (popupTranslations[lang][key]) {
+        element.textContent =
+          popupTranslations[lang][key];
       }
-    );
+
+    });
+
+}
+
+
+function openLuckyModal() {
+
+  updateLuckyPopupLanguage();
+
+  const modal =
+    document.getElementById("luckyModal");
+
+  modal.classList.add("is-open");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.classList.add(
+    "modal-open"
+  );
+
+}
+
+
+function closeLuckyModal() {
+
+  const modal =
+    document.getElementById("luckyModal");
+
+  modal.classList.remove("is-open");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.classList.remove(
+    "modal-open"
+  );
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+      closeLuckyModal();
+    }
+
+  }
+);
+
+
+document
+  .getElementById("secretForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+
+      openLuckyModal();
+
+    }
+  );
 
 
   const savedLanguage =
