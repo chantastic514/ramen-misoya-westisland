@@ -1967,6 +1967,8 @@ body.modal-open {
       "Uniquement chez Ramen Misoya Ouest-de-l’Île",
     button:
       "Parfait! 🐾"
+    shareButton:
+    "Partager 📤"
   },
 
   en: {
@@ -1981,6 +1983,8 @@ body.modal-open {
       "Only at Ramen Misoya West Island",
     button:
       "Got it! 🐾"
+    shareButton:
+    "Share 📤"
   }
 
 };
@@ -2096,8 +2100,55 @@ document
     setLanguage("fr");
 
   }
+async function shareLuckyPopup() {
 
+  const card = document.querySelector(".lucky-modal-card");
+
+  const canvas = await html2canvas(card, {
+    backgroundColor: "#ffffff",
+    scale: 2
+  });
+
+  canvas.toBlob(async function(blob) {
+
+    const file = new File(
+      [blob],
+      "misoya-lucky-passcode.png",
+      { type: "image/png" }
+    );
+
+    if (
+      navigator.canShare &&
+      navigator.canShare({ files: [file] })
+    ) {
+
+      await navigator.share({
+        files: [file],
+        title: "Misoya Lucky"
+      });
+
+    } else {
+
+      const link =
+        document.createElement("a");
+
+      link.href =
+        URL.createObjectURL(blob);
+
+      link.download =
+        "misoya-lucky-passcode.png";
+
+      link.click();
+
+      URL.revokeObjectURL(link.href);
+
+    }
+
+  }, "image/png");
+
+}
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 </html>
