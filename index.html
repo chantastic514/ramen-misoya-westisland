@@ -21,7 +21,6 @@
       --paper: #ffffff;
       --soft: #FAF7F3;
       --line: #ECE8E2;
-      --misoya: #F05A28;
       --dark: #171414;
       --max: 1180px;
     }
@@ -566,6 +565,156 @@
       color: #777;
     }
 
+    .lucky-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lucky-modal.is-open {
+      display: flex;
+    }
+
+    .lucky-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 12, 18, 0.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .lucky-modal-card {
+      width: min(420px, 100%);
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 30px 28px 26px;
+      text-align: center;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.30);
+      animation: luckyPop .25s ease-out;
+      opacity: 1;
+    }
+
+    @keyframes luckyPop {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .lucky-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: #f5f2f7;
+      color: #555;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    .lucky-modal-image {
+      width: 125px;
+      height: 125px;
+      object-fit: contain;
+      margin: 0 auto 6px;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,.12));
+    }
+
+    .lucky-modal-card h2 {
+      margin: 0 0 9px;
+      font-size: 29px;
+      line-height: 1.1;
+    }
+
+    .lucky-modal-intro {
+      max-width: 340px;
+      margin: 0 auto 18px;
+      color: #626676;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .lucky-passcode {
+      background: #f7f0fb;
+      border: 2px solid var(--rel-purple);
+      border-radius: 14px;
+      padding: 13px 16px 15px;
+      margin-bottom: 18px;
+    }
+
+    .lucky-passcode span {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--rel-purple);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .lucky-passcode strong {
+      display: block;
+      color: var(--rel-purple);
+      font-size: 27px;
+      line-height: 1.15;
+    }
+
+    .lucky-modal-details {
+      text-align: left;
+      background: #fff8f3;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .lucky-modal-details p {
+      margin: 0 0 7px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .lucky-modal-details p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lucky-address {
+      padding-left: 23px;
+      color: #626676;
+    }
+
+    .lucky-modal-button {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: var(--rel-orange);
+      color: white;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .lucky-share-button {
+      margin-top: 10px;
+      background: var(--rel-purple);
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
     @media (max-width: 1050px) {
       .navlinks {
         gap: 14px;
@@ -702,176 +851,25 @@
         grid-column: auto;
       }
     }
-  /* =========================
-   LUCKY POPUP
-========================= */
 
-.lucky-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+    @media (max-width: 520px) {
+      .lucky-modal-card {
+        padding: 28px 21px 22px;
+      }
 
-.lucky-modal.is-open {
-  display: flex;
-}
+      .lucky-modal-image {
+        width: 110px;
+        height: 110px;
+      }
 
-.lucky-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 12, 18, 0.72);
-  backdrop-filter: blur(6px);
-}
+      .lucky-modal-card h2 {
+        font-size: 25px;
+      }
 
-.lucky-modal-card {
-  width: min(420px, 100%);
-  position: relative;
-  z-index: 2;
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 30px 28px 26px;
-  text-align: center;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.30);
-  animation: luckyPop .25s ease-out;
-}
-
-@keyframes luckyPop {
-  from {
-    opacity: 0;
-    transform: translateY(15px) scale(.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.lucky-modal-close {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border: 0;
-  border-radius: 50%;
-  background: #f5f2f7;
-  color: #555;
-  font-size: 23px;
-  cursor: pointer;
-}
-
-.lucky-modal-image {
-  width: 125px;
-  height: 125px;
-  object-fit: contain;
-  margin: 0 auto 6px;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,.12));
-}
-
-.lucky-modal-card h2 {
-  margin: 0 0 9px;
-  font-size: 29px;
-  line-height: 1.1;
-}
-
-.lucky-modal-intro {
-  max-width: 340px;
-  margin: 0 auto 18px;
-  color: #626676;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.lucky-passcode {
-  background: #f7f0fb;
-  border: 2px solid #652D90;
-  border-radius: 14px;
-  padding: 13px 16px 15px;
-  margin-bottom: 18px;
-}
-
-.lucky-passcode span {
-  display: block;
-  margin-bottom: 3px;
-  color: #652D90;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .12em;
-}
-
-.lucky-passcode strong {
-  display: block;
-  color: #652D90;
-  font-size: 27px;
-  line-height: 1.15;
-}
-
-.lucky-modal-details {
-  text-align: left;
-  background: #fff8f3;
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-bottom: 18px;
-}
-
-.lucky-modal-details p {
-  margin: 0 0 7px;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.lucky-modal-details p:last-child {
-  margin-bottom: 0;
-}
-
-.lucky-address {
-  padding-left: 23px;
-  color: #626676;
-}
-
-.lucky-modal-button {
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  background: #F05A28;
-  color: white;
-  padding: 14px 20px;
-  font-size: 15px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-@media (max-width: 520px) {
-  .lucky-modal-card {
-    padding: 28px 21px 22px;
-  }
-
-  .lucky-modal-image {
-    width: 110px;
-    height: 110px;
-  }
-
-  .lucky-modal-card h2 {
-    font-size: 25px;
-  }
-
-  .lucky-passcode strong {
-    font-size: 23px;
-  }
-}
-    .lucky-share-button {
-  margin-top: 10px;
-  background: #652D90;
-}
+      .lucky-passcode strong {
+        font-size: 23px;
+      }
+    }
   </style>
 </head>
 
@@ -893,23 +891,8 @@ body.modal-open {
     </div>
 
     <div class="language-switcher" aria-label="Language">
-      <button
-        class="lang-btn active"
-        id="frBtn"
-        type="button"
-        onclick="setLanguage('fr')"
-      >
-        FR
-      </button>
-
-      <button
-        class="lang-btn"
-        id="enBtn"
-        type="button"
-        onclick="setLanguage('en')"
-      >
-        EN
-      </button>
+      <button class="lang-btn active" id="frBtn" type="button" onclick="setLanguage('fr')">FR</button>
+      <button class="lang-btn" id="enBtn" type="button" onclick="setLanguage('en')">EN</button>
     </div>
 
     <a class="navcta" href="#" data-i18n="navRestaurant">
@@ -925,8 +908,6 @@ body.modal-open {
     Accueil › Blogue › Portraits de restaurateurs › Misoya
   </div>
 
-
-  <!-- HERO -->
   <section class="hero">
 
     <div class="hero-copy">
@@ -968,8 +949,6 @@ body.modal-open {
 
   </section>
 
-
-  <!-- STORY -->
   <section class="section story-grid">
 
     <div class="photo-card">
@@ -1007,8 +986,6 @@ body.modal-open {
 
   </section>
 
-
-  <!-- JAPAN -->
   <section class="section japan-grid">
 
     <div class="japan-copy">
@@ -1066,8 +1043,6 @@ body.modal-open {
 
   </section>
 
-
-  <!-- WEST ISLAND -->
   <section class="section west">
 
     <div class="photo-card">
@@ -1147,8 +1122,6 @@ body.modal-open {
 
   </section>
 
-
-  <!-- SECRET OFFERS -->
   <section class="secret" id="secret">
 
     <div class="secret-inner">
@@ -1172,17 +1145,15 @@ body.modal-open {
         </h2>
 
         <p class="sub" data-i18n="secretDates">
-          Du 10 au 20 septembre 2026 • exclusivement chez Ramen Misoya Ouest-de-l’Île • pour la communauté RestoEnLigne.
+          Du 10 au 20 septembre 2026 inclusivement • exclusivement chez Ramen Misoya Ouest-de-l’Île • pour la communauté RestoEnLigne.
         </p>
 
         <p data-i18n="secretIntro">
-          Lucky est le Shiba Inu de Derik. Pour cette collaboration, il devient l’indice qui vous mène de l’histoire… jusqu’au restaurant. Déverrouillez le mot de passe ci-dessous, puis présentez-le sur place.
+          Lucky est le Shiba Inu de Derik. Pour cette collaboration, il devient l’indice qui vous mène de l’histoire… jusqu’au restaurant. Remplissez le formulaire ci-dessous pour dévoiler le passcode.
         </p>
-
 
         <div class="offers">
 
-          <!-- OFFER 1 -->
           <article class="offer">
 
             <div>
@@ -1200,8 +1171,8 @@ body.modal-open {
               <ul>
                 <li data-i18n="offer1Item1">1 ramen au choix</li>
                 <li data-i18n="offer1Item2">1 salade sunomono</li>
-                <li data-i18n="offer1Item3">1 boisson gazeuse</li>
-                <li data-i18n="offer1Item4">1 karaage au poulet ou au porc</li>
+                <li data-i18n="offer1Item3">1 karaage de poulet OU 1 katsu de porc</li>
+                <li data-i18n="offer1Item4">1 boisson gazeuse</li>
               </ul>
 
             </div>
@@ -1215,8 +1186,6 @@ body.modal-open {
 
           </article>
 
-
-          <!-- OFFER 2 -->
           <article class="offer">
 
             <div>
@@ -1232,9 +1201,9 @@ body.modal-open {
               </div>
 
               <ul>
-                <li data-i18n="offer2Item1">1 ramen</li>
-                <li data-i18n="offer2Item2">1 katsu au poulet ou au porc</li>
-                <li data-i18n="offer2Item3">1 salade</li>
+                <li data-i18n="offer2Item1">1 ramen au choix</li>
+                <li data-i18n="offer2Item2">1 katsu de poulet OU de porc sur riz avec sauce au curry</li>
+                <li data-i18n="offer2Item3">1 salade sunomono</li>
                 <li data-i18n="offer2Item4">2 boissons gazeuses</li>
               </ul>
 
@@ -1255,8 +1224,6 @@ body.modal-open {
 
     </div>
 
-
-    <!-- UNLOCK -->
     <div class="unlock">
 
       <div>
@@ -1266,27 +1233,25 @@ body.modal-open {
         </h3>
 
         <p data-i18n="unlockText">
-          Remplissez le formulaire et nous vous enverrons le mot de passe secret par courriel. Aucune réservation requise, aucune limite quotidienne, et plusieurs clients peuvent profiter de l’offre.
+          Remplissez le formulaire pour dévoiler immédiatement le passcode secret. Aucune réservation requise, aucune limite quotidienne, et plusieurs clients peuvent profiter de l’offre.
         </p>
 
         <div class="location">
 
           <strong data-i18n="validOnly">
-            Offre valable uniquement ici :
+            Offre valide du 10 au 20 septembre 2026 inclusivement, uniquement ici :
           </strong>
 
-          <br>
+          <br><br>
 
-          Ramen Misoya Ouest-de-l’Île
+          <strong>Ramen Misoya Ouest-de-l’Île</strong><br>
+          3687, boul. Saint-Jean<br>
+          Dollard-des-Ormeaux, QC H9G 1T2
 
-          <br>
-
-          3687, boul. Saint-Jean, Dollard-des-Ormeaux, QC H9G 1T2
-
-          <br>
+          <br><br>
 
           <strong data-i18n="notValid">
-            Non valide dans les autres succursales Misoya.
+            Non valide dans les autres succursales Ramen Misoya.
           </strong>
 
           <br>
@@ -1303,8 +1268,6 @@ body.modal-open {
 
       </div>
 
-
-      <!-- FORM -->
       <form id="secretForm">
 
         <input
@@ -1374,7 +1337,7 @@ body.modal-open {
         </button>
 
         <p class="privacy" data-i18n="privacy">
-          En soumettant ce formulaire, vous acceptez de recevoir le courriel contenant le mot de passe et les communications liées à cette offre. Branchez ce formulaire à votre système CRM / courriel avant la mise en ligne.
+          En soumettant ce formulaire, vous acceptez les communications liées à cette offre.
         </p>
 
       </form>
@@ -1383,18 +1346,13 @@ body.modal-open {
 
   </section>
 
-
   <div class="footer-note" data-i18n="footer">
     Portrait de restaurateur • RestoEnLigne × Ramen Misoya Ouest-de-l’Île
   </div>
 
 </main>
-<!-- LUCKY SUCCESS POPUP -->
-<div
-  class="lucky-modal"
-  id="luckyModal"
-  aria-hidden="true"
->
+
+<div class="lucky-modal" id="luckyModal" aria-hidden="true">
 
   <div
     class="lucky-modal-backdrop"
@@ -1436,8 +1394,8 @@ body.modal-open {
       </span>
 
       <strong data-popup-i18n="passcode">
-  Où est Lucky ?
-</strong>
+        Où est Lucky ?
+      </strong>
 
     </div>
 
@@ -1472,21 +1430,25 @@ body.modal-open {
     >
       Parfait! 🐾
     </button>
-<button
-  class="lucky-modal-button lucky-share-button"
-  type="button"
-  onclick="shareLuckyPopup()"
-  data-popup-i18n="shareButton"
->
-  Partager 📤
-</button>
+
+    <button
+      class="lucky-modal-button lucky-share-button"
+      type="button"
+      onclick="shareLuckyPopup()"
+      data-popup-i18n="shareButton"
+    >
+      Partager 📤
+    </button>
+
   </div>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 <script>
 
-  let currentLanguage = 'fr';
+  let currentLanguage = "fr";
 
   const translations = {
 
@@ -1584,10 +1546,10 @@ body.modal-open {
         "Lucky a caché deux offres secrètes chez Ramen Misoya Ouest-de-l’Île.",
 
       secretDates:
-        "Du 10 au 20 septembre 2026 • exclusivement chez Ramen Misoya Ouest-de-l’Île • pour la communauté RestoEnLigne.",
+        "Du 10 au 20 septembre 2026 inclusivement • exclusivement chez Ramen Misoya Ouest-de-l’Île • pour la communauté RestoEnLigne.",
 
       secretIntro:
-        "Lucky est le Shiba Inu de Derik. Pour cette collaboration, il devient l’indice qui vous mène de l’histoire… jusqu’au restaurant. Déverrouillez le mot de passe ci-dessous, puis présentez-le sur place.",
+        "Lucky est le Shiba Inu de Derik. Pour cette collaboration, il devient l’indice qui vous mène de l’histoire… jusqu’au restaurant. Remplissez le formulaire ci-dessous pour dévoiler le passcode.",
 
       offer1Title:
         "🔐 Offre secrète #1",
@@ -1602,22 +1564,22 @@ body.modal-open {
         "1 salade sunomono",
 
       offer1Item3:
-        "1 boisson gazeuse",
+        "1 karaage de poulet OU 1 katsu de porc",
 
       offer1Item4:
-        "1 karaage au poulet ou au porc",
+        "1 boisson gazeuse",
 
       offer2Title:
         "🔐 Offre secrète #2 — Duo",
 
       offer2Item1:
-        "1 ramen",
+        "1 ramen au choix",
 
       offer2Item2:
-        "1 katsu au poulet ou au porc",
+        "1 katsu de poulet OU de porc sur riz avec sauce au curry",
 
       offer2Item3:
-        "1 salade",
+        "1 salade sunomono",
 
       offer2Item4:
         "2 boissons gazeuses",
@@ -1626,13 +1588,13 @@ body.modal-open {
         "🔒 Déverrouillez le secret",
 
       unlockText:
-        "Remplissez le formulaire et nous vous enverrons le mot de passe secret par courriel. Aucune réservation requise, aucune limite quotidienne, et plusieurs clients peuvent profiter de l’offre.",
+        "Remplissez le formulaire pour dévoiler immédiatement le passcode secret. Aucune réservation requise, aucune limite quotidienne, et plusieurs clients peuvent profiter de l’offre.",
 
       validOnly:
-        "Offre valable uniquement ici :",
+        "Offre valide du 10 au 20 septembre 2026 inclusivement, uniquement ici :",
 
       notValid:
-        "Non valide dans les autres succursales Misoya.",
+        "Non valide dans les autres succursales Ramen Misoya.",
 
       formComing:
         "Vous venez ?",
@@ -1653,12 +1615,11 @@ body.modal-open {
         "🔒 Débloquer le mot de passe →",
 
       privacy:
-        "En soumettant ce formulaire, vous acceptez de recevoir le courriel contenant le mot de passe et les communications liées à cette offre. Branchez ce formulaire à votre système CRM / courriel avant la mise en ligne.",
+        "En soumettant ce formulaire, vous acceptez les communications liées à cette offre.",
 
       footer:
         "Portrait de restaurateur • RestoEnLigne × Ramen Misoya Ouest-de-l’Île"
     },
-
 
     en: {
 
@@ -1754,10 +1715,10 @@ body.modal-open {
         "Lucky has hidden two secret offers at Ramen Misoya West Island.",
 
       secretDates:
-        "September 10–20, 2026 • exclusively at Ramen Misoya West Island • for the RestoEnLigne community.",
+        "September 10–20, 2026, inclusive • exclusively at Ramen Misoya West Island • for the RestoEnLigne community.",
 
       secretIntro:
-        "Lucky is Derik’s Shiba Inu. For this collaboration, he becomes the clue that takes you from Derik’s story… all the way to the restaurant. Unlock the password below, then show it when you visit.",
+        "Lucky is Derik’s Shiba Inu. For this collaboration, he becomes the clue that takes you from Derik’s story… all the way to the restaurant. Fill out the form below to reveal the passcode.",
 
       offer1Title:
         "🔐 Secret Offer #1",
@@ -1772,22 +1733,22 @@ body.modal-open {
         "1 sunomono salad",
 
       offer1Item3:
-        "1 soft drink",
+        "1 chicken karaage OR 1 pork katsu",
 
       offer1Item4:
-        "1 chicken or pork karaage",
+        "1 soft drink",
 
       offer2Title:
         "🔐 Secret Offer #2 — Duo",
 
       offer2Item1:
-        "1 ramen",
+        "1 ramen of your choice",
 
       offer2Item2:
-        "1 chicken or pork katsu",
+        "1 chicken OR pork katsu on rice with curry sauce",
 
       offer2Item3:
-        "1 salad",
+        "1 sunomono salad",
 
       offer2Item4:
         "2 soft drinks",
@@ -1796,13 +1757,13 @@ body.modal-open {
         "🔒 Unlock the secret",
 
       unlockText:
-        "Fill out the form and we’ll send the secret password to you by email. No reservation required, no daily limit, and multiple customers can take advantage of the offer.",
+        "Fill out the form to reveal the secret passcode instantly. No reservation required, no daily limit, and multiple customers can take advantage of the offer.",
 
       validOnly:
-        "Offer valid only at:",
+        "Valid September 10–20, 2026, inclusive, exclusively at:",
 
       notValid:
-        "Not valid at any other Misoya location.",
+        "Not valid at any other Ramen Misoya location.",
 
       formComing:
         "Who are you coming with?",
@@ -1823,7 +1784,7 @@ body.modal-open {
         "🔒 Unlock the password →",
 
       privacy:
-        "By submitting this form, you agree to receive the email containing the password and communications related to this offer. Connect this form to your CRM / email platform before publishing.",
+        "By submitting this form, you agree to communications related to this offer.",
 
       footer:
         "Restaurateur Story • RestoEnLigne × Ramen Misoya West Island"
@@ -1831,6 +1792,45 @@ body.modal-open {
 
   };
 
+  const popupTranslations = {
+
+    fr: {
+      title: "Vous avez trouvé Lucky! 🐕",
+      intro:
+        "Présentez ce passcode chez Ramen Misoya Ouest-de-l’Île pour profiter de l’une des deux offres secrètes.",
+      passcodeLabel:
+        "VOTRE PASSCODE",
+      passcode:
+        "Où est Lucky ?",
+      dates:
+        "Valide du 10 au 20 septembre 2026 inclusivement",
+      locationOnly:
+        "Uniquement chez Ramen Misoya Ouest-de-l’Île",
+      button:
+        "Parfait! 🐾",
+      shareButton:
+        "Partager 📤"
+    },
+
+    en: {
+      title: "You found Lucky! 🐕",
+      intro:
+        "Show this passcode at Ramen Misoya West Island to enjoy one of the two secret deals.",
+      passcodeLabel:
+        "YOUR PASSCODE",
+      passcode:
+        "Where is Lucky?",
+      dates:
+        "Valid September 10–20, 2026, inclusive",
+      locationOnly:
+        "Only at Ramen Misoya West Island",
+      button:
+        "Got it! 🐾",
+      shareButton:
+        "Share 📤"
+    }
+
+  };
 
   function setLanguage(lang) {
 
@@ -1838,47 +1838,52 @@ body.modal-open {
 
     document.documentElement.lang = lang;
 
-    document.querySelectorAll("[data-i18n]").forEach(function(element) {
+    document
+      .querySelectorAll("[data-i18n]")
+      .forEach(function(element) {
 
-      const key = element.getAttribute("data-i18n");
+        const key =
+          element.getAttribute("data-i18n");
 
-      if (translations[lang][key]) {
-        element.textContent = translations[lang][key];
-      }
+        if (translations[lang][key]) {
+          element.textContent =
+            translations[lang][key];
+        }
 
-    });
+      });
 
+    document
+      .querySelectorAll("[data-alt-fr]")
+      .forEach(function(image) {
 
-    document.querySelectorAll("[data-alt-fr]").forEach(function(image) {
+        image.alt =
+          lang === "fr"
+            ? image.getAttribute("data-alt-fr")
+            : image.getAttribute("data-alt-en");
 
-      image.alt =
-        lang === "fr"
-          ? image.getAttribute("data-alt-fr")
-          : image.getAttribute("data-alt-en");
+      });
 
-    });
+    const firstName =
+      document.getElementById("firstName");
 
+    const email =
+      document.getElementById("email");
 
-    const firstName = document.getElementById("firstName");
-    const email = document.getElementById("email");
-    const phone = document.getElementById("phone");
-    const city = document.getElementById("city");
-    const company = document.getElementById("company");
+    const phone =
+      document.getElementById("phone");
 
+    const city =
+      document.getElementById("city");
+
+    const company =
+      document.getElementById("company");
 
     if (lang === "fr") {
 
       firstName.placeholder = "Prénom *";
-      firstName.setAttribute("aria-label", "Prénom");
-
       email.placeholder = "Courriel *";
-      email.setAttribute("aria-label", "Courriel");
-
       phone.placeholder = "Téléphone";
-      phone.setAttribute("aria-label", "Téléphone");
-
       city.placeholder = "Ville *";
-      city.setAttribute("aria-label", "Ville");
 
       company.setAttribute(
         "aria-label",
@@ -1888,33 +1893,12 @@ body.modal-open {
       document.title =
         "Portrait de restaurateur : Derik de Ramen Misoya Ouest-de-l’Île | RestoEnLigne";
 
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute(
-          "content",
-          "Découvrez le parcours de Derik, chef de Ramen Misoya Ouest-de-l’Île, son apprentissage au Japon et les offres secrètes Lucky réservées à la communauté RestoEnLigne."
-        );
-
-      document
-        .getElementById("mainNav")
-        .setAttribute(
-          "aria-label",
-          "Navigation principale"
-        );
-
     } else {
 
       firstName.placeholder = "First name *";
-      firstName.setAttribute("aria-label", "First name");
-
       email.placeholder = "Email *";
-      email.setAttribute("aria-label", "Email");
-
       phone.placeholder = "Phone";
-      phone.setAttribute("aria-label", "Phone");
-
       city.placeholder = "City *";
-      city.setAttribute("aria-label", "City");
 
       company.setAttribute(
         "aria-label",
@@ -1924,22 +1908,7 @@ body.modal-open {
       document.title =
         "Restaurateur Story: Derik of Ramen Misoya West Island | RestoEnLigne";
 
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute(
-          "content",
-          "Discover Derik's journey, his ramen chef training in Japan, and Lucky's secret offers reserved for the RestoEnLigne community at Ramen Misoya West Island."
-        );
-
-      document
-        .getElementById("mainNav")
-        .setAttribute(
-          "aria-label",
-          "Main navigation"
-        );
-
     }
-
 
     document
       .getElementById("frBtn")
@@ -1955,7 +1924,6 @@ body.modal-open {
         lang === "en"
       );
 
-
     localStorage.setItem(
       "misoyaLanguage",
       lang
@@ -1963,305 +1931,275 @@ body.modal-open {
 
   }
 
+  function updateLuckyPopupLanguage() {
 
-  const popupTranslations = {
+    const lang =
+      currentLanguage === "en"
+        ? "en"
+        : "fr";
 
-  fr: {
-    title: "Vous avez trouvé Lucky! 🐕",
-    intro:
-      "Présentez ce passcode chez Ramen Misoya Ouest-de-l’Île pour profiter de l’une des deux offres secrètes.",
-    passcodeLabel: "VOTRE PASSCODE",
-    passcode: "Où est Lucky ?",
-    dates:
-      "Valide du 10 au 20 septembre 2026 inclusivement",
-    locationOnly:
-      "Uniquement chez Ramen Misoya Ouest-de-l’Île",
-    button:
-      "Parfait! 🐾",
-    shareButton:
-    "Partager 📤"
-  },
+    document
+      .querySelectorAll("[data-popup-i18n]")
+      .forEach(function(element) {
 
-  en: {
-    title: "You found Lucky! 🐕",
-    intro:
-      "Show this passcode at Ramen Misoya West Island to enjoy one of the two secret deals.",
-    passcodeLabel: "YOUR PASSCODE",
-    passcode: "Where is Lucky?",
-    dates:
-      "Valid September 10–20, 2026, inclusive",
-    locationOnly:
-      "Only at Ramen Misoya West Island",
-    button:
-      "Got it! 🐾",
-    shareButton:
-    "Share 📤"
-  }
+        const key =
+          element.getAttribute("data-popup-i18n");
 
-};
+        if (popupTranslations[lang][key]) {
 
+          element.textContent =
+            popupTranslations[lang][key];
 
-function updateLuckyPopupLanguage() {
+        }
 
-  const lang =
-    currentLanguage === "en"
-      ? "en"
-      : "fr";
-
-  document
-    .querySelectorAll("[data-popup-i18n]")
-    .forEach(function(element) {
-
-      const key =
-        element.getAttribute("data-popup-i18n");
-
-      if (popupTranslations[lang][key]) {
-        element.textContent =
-          popupTranslations[lang][key];
-      }
-
-    });
-
-}
-
-
-function openLuckyModal() {
-
-  updateLuckyPopupLanguage();
-
-  const modal =
-    document.getElementById("luckyModal");
-
-  modal.classList.add("is-open");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-  document.body.classList.add(
-    "modal-open"
-  );
-
-}
-
-
-function closeLuckyModal() {
-
-  const modal =
-    document.getElementById("luckyModal");
-
-  modal.classList.remove("is-open");
-
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  document.body.classList.remove(
-    "modal-open"
-  );
-
-}
-
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Escape") {
-      closeLuckyModal();
-    }
-
-  }
-);
-
-
-document
-  .getElementById("secretForm")
-  .addEventListener(
-    "submit",
-    function(event) {
-
-      event.preventDefault();
-
-      if (!this.checkValidity()) {
-        this.reportValidity();
-        return;
-      }
-
-      openLuckyModal();
-
-    }
-  );
-
-async function shareLuckyPopup() {
-
-  const card =
-    document.querySelector(".lucky-modal-card");
-
-  const closeButton =
-    card.querySelector(".lucky-modal-close");
-
-  const actionButtons =
-    card.querySelectorAll(".lucky-modal-button");
-
-  closeButton.style.display = "none";
-
-  actionButtons.forEach(function(button) {
-    button.style.display = "none";
-  });
-
-  try {
-
-    const canvas = await html2canvas(card, {
-      backgroundColor: "#ffffff",
-      scale: 2,
-      useCORS: true
-    });
-
-    canvas.toBlob(async function(blob) {
-
-      closeButton.style.display = "";
-
-      actionButtons.forEach(function(button) {
-        button.style.display = "";
       });
 
-      const file = new File(
-        [blob],
-        "misoya-lucky-passcode.png",
-        {
-          type: "image/png"
-        }
-      );
+  }
 
-      if (
-        navigator.canShare &&
-        navigator.canShare({
-          files: [file]
-        })
-      ) {
+  function openLuckyModal() {
 
-        try {
+    updateLuckyPopupLanguage();
 
-          await navigator.share({
-            files: [file],
-            title: "Misoya Lucky"
-          });
+    const modal =
+      document.getElementById("luckyModal");
 
-        } catch (error) {
+    modal.classList.add("is-open");
 
-          console.log(
-            "Share cancelled",
-            error
-          );
+    modal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
 
-        }
-
-      } else {
-
-        const link =
-          document.createElement("a");
-
-        const imageUrl =
-          URL.createObjectURL(blob);
-
-        link.href = imageUrl;
-
-        link.download =
-          "misoya-lucky-passcode.png";
-
-        link.click();
-
-        URL.revokeObjectURL(
-          imageUrl
-        );
-
-      }
-
-    }, "image/png");
-
-  } catch (error) {
-
-    closeButton.style.display = "";
-
-    actionButtons.forEach(function(button) {
-      button.style.display = "";
-    });
-
-    console.error(
-      "PNG error:",
-      error
+    document.body.classList.add(
+      "modal-open"
     );
 
   }
 
-}
+  function closeLuckyModal() {
+
+    const modal =
+      document.getElementById("luckyModal");
+
+    modal.classList.remove("is-open");
+
+    modal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
+  }
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+        closeLuckyModal();
+      }
+
+    }
+  );
+
+  document
+    .getElementById("secretForm")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+
+          this.reportValidity();
+          return;
+
+        }
+
+        openLuckyModal();
+
+      }
+    );
+
+  async function shareLuckyPopup() {
+
+    const card =
+      document.querySelector(".lucky-modal-card");
+
+    try {
+
+      const canvas =
+        await html2canvas(
+          card,
+          {
+            backgroundColor: "#ffffff",
+            scale: 3,
+            useCORS: true,
+            logging: false,
+
+            onclone:
+              function(clonedDocument) {
+
+                const clonedCard =
+                  clonedDocument.querySelector(
+                    ".lucky-modal-card"
+                  );
+
+                const clonedClose =
+                  clonedDocument.querySelector(
+                    ".lucky-modal-close"
+                  );
+
+                const clonedButtons =
+                  clonedDocument.querySelectorAll(
+                    ".lucky-modal-button"
+                  );
+
+                if (clonedCard) {
+
+                  clonedCard.style.animation =
+                    "none";
+
+                  clonedCard.style.transform =
+                    "none";
+
+                  clonedCard.style.opacity =
+                    "1";
+
+                  clonedCard.style.boxShadow =
+                    "none";
+
+                }
+
+                if (clonedClose) {
+                  clonedClose.style.display =
+                    "none";
+                }
+
+                clonedButtons.forEach(
+                  function(button) {
+                    button.style.display =
+                      "none";
+                  }
+                );
+
+              }
+          }
+        );
+
+      canvas.toBlob(
+        async function(blob) {
+
+          if (!blob) {
+            return;
+          }
+
+          const file =
+            new File(
+              [blob],
+              currentLanguage === "fr"
+                ? "misoya-lucky-passcode-fr.png"
+                : "misoya-lucky-passcode-en.png",
+              {
+                type: "image/png"
+              }
+            );
+
+          if (
+            navigator.canShare &&
+            navigator.canShare({
+              files: [file]
+            })
+          ) {
+
+            try {
+
+              await navigator.share({
+                files: [file],
+                title: "Misoya Lucky"
+              });
+
+            } catch (error) {
+
+              console.log(
+                "Share cancelled",
+                error
+              );
+
+            }
+
+          } else {
+
+            const imageUrl =
+              URL.createObjectURL(blob);
+
+            const link =
+              document.createElement("a");
+
+            link.href = imageUrl;
+
+            link.download =
+              file.name;
+
+            document.body.appendChild(
+              link
+            );
+
+            link.click();
+
+            link.remove();
+
+            setTimeout(
+              function() {
+                URL.revokeObjectURL(
+                  imageUrl
+                );
+              },
+              1000
+            );
+
+          }
+
+        },
+        "image/png"
+      );
+
+    } catch (error) {
+
+      console.error(
+        "PNG error:",
+        error
+      );
+
+    }
+
+  }
+
   const savedLanguage =
-    localStorage.getItem("misoyaLanguage");
+    localStorage.getItem(
+      "misoyaLanguage"
+    );
 
   if (
     savedLanguage === "fr" ||
     savedLanguage === "en"
   ) {
 
-    setLanguage(savedLanguage);
+    setLanguage(
+      savedLanguage
+    );
 
   } else {
 
     setLanguage("fr");
 
   }
-async function shareLuckyPopup() {
 
-  const card = document.querySelector(".lucky-modal-card");
-
-  const canvas = await html2canvas(card, {
-    backgroundColor: "#ffffff",
-    scale: 2
-  });
-
-  canvas.toBlob(async function(blob) {
-
-    const file = new File(
-      [blob],
-      "misoya-lucky-passcode.png",
-      { type: "image/png" }
-    );
-
-    if (
-      navigator.canShare &&
-      navigator.canShare({ files: [file] })
-    ) {
-
-      await navigator.share({
-        files: [file],
-        title: "Misoya Lucky"
-      });
-
-    } else {
-
-      const link =
-        document.createElement("a");
-
-      link.href =
-        URL.createObjectURL(blob);
-
-      link.download =
-        "misoya-lucky-passcode.png";
-
-      link.click();
-
-      URL.revokeObjectURL(link.href);
-
-    }
-
-  }, "image/png");
-
-}
 </script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 </body>
 </html>
