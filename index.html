@@ -2095,7 +2095,109 @@ document
     }
   );
 
+async function shareLuckyPopup() {
 
+  const card =
+    document.querySelector(".lucky-modal-card");
+
+  const closeButton =
+    card.querySelector(".lucky-modal-close");
+
+  const actionButtons =
+    card.querySelectorAll(".lucky-modal-button");
+
+  closeButton.style.display = "none";
+
+  actionButtons.forEach(function(button) {
+    button.style.display = "none";
+  });
+
+  try {
+
+    const canvas = await html2canvas(card, {
+      backgroundColor: "#ffffff",
+      scale: 2,
+      useCORS: true
+    });
+
+    canvas.toBlob(async function(blob) {
+
+      closeButton.style.display = "";
+
+      actionButtons.forEach(function(button) {
+        button.style.display = "";
+      });
+
+      const file = new File(
+        [blob],
+        "misoya-lucky-passcode.png",
+        {
+          type: "image/png"
+        }
+      );
+
+      if (
+        navigator.canShare &&
+        navigator.canShare({
+          files: [file]
+        })
+      ) {
+
+        try {
+
+          await navigator.share({
+            files: [file],
+            title: "Misoya Lucky"
+          });
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled",
+            error
+          );
+
+        }
+
+      } else {
+
+        const link =
+          document.createElement("a");
+
+        const imageUrl =
+          URL.createObjectURL(blob);
+
+        link.href = imageUrl;
+
+        link.download =
+          "misoya-lucky-passcode.png";
+
+        link.click();
+
+        URL.revokeObjectURL(
+          imageUrl
+        );
+
+      }
+
+    }, "image/png");
+
+  } catch (error) {
+
+    closeButton.style.display = "";
+
+    actionButtons.forEach(function(button) {
+      button.style.display = "";
+    });
+
+    console.error(
+      "PNG error:",
+      error
+    );
+
+  }
+
+}
   const savedLanguage =
     localStorage.getItem("misoyaLanguage");
 
