@@ -702,6 +702,172 @@
         grid-column: auto;
       }
     }
+  /* =========================
+   LUCKY POPUP
+========================= */
+
+.lucky-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lucky-modal.is-open {
+  display: flex;
+}
+
+.lucky-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 12, 18, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.lucky-modal-card {
+  width: min(420px, 100%);
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 30px 28px 26px;
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.30);
+  animation: luckyPop .25s ease-out;
+}
+
+@keyframes luckyPop {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lucky-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #f5f2f7;
+  color: #555;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.lucky-modal-image {
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+  margin: 0 auto 6px;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,.12));
+}
+
+.lucky-modal-card h2 {
+  margin: 0 0 9px;
+  font-size: 29px;
+  line-height: 1.1;
+}
+
+.lucky-modal-intro {
+  max-width: 340px;
+  margin: 0 auto 18px;
+  color: #626676;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.lucky-passcode {
+  background: #f7f0fb;
+  border: 2px solid #652D90;
+  border-radius: 14px;
+  padding: 13px 16px 15px;
+  margin-bottom: 18px;
+}
+
+.lucky-passcode span {
+  display: block;
+  margin-bottom: 3px;
+  color: #652D90;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.lucky-passcode strong {
+  display: block;
+  color: #652D90;
+  font-size: 27px;
+  line-height: 1.15;
+}
+
+.lucky-modal-details {
+  text-align: left;
+  background: #fff8f3;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.lucky-modal-details p {
+  margin: 0 0 7px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.lucky-modal-details p:last-child {
+  margin-bottom: 0;
+}
+
+.lucky-address {
+  padding-left: 23px;
+  color: #626676;
+}
+
+.lucky-modal-button {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background: #F05A28;
+  color: white;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .lucky-modal-card {
+    padding: 28px 21px 22px;
+  }
+
+  .lucky-modal-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .lucky-modal-card h2 {
+    font-size: 25px;
+  }
+
+  .lucky-passcode strong {
+    font-size: 23px;
+  }
+}
   </style>
 </head>
 
@@ -1219,7 +1385,93 @@
   </div>
 
 </main>
+<!-- LUCKY SUCCESS POPUP -->
+<div
+  class="lucky-modal"
+  id="luckyModal"
+  aria-hidden="true"
+>
 
+  <div
+    class="lucky-modal-backdrop"
+    onclick="closeLuckyModal()"
+  ></div>
+
+  <div class="lucky-modal-card">
+
+    <button
+      class="lucky-modal-close"
+      type="button"
+      onclick="closeLuckyModal()"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <img
+      class="lucky-modal-image"
+      src="assets/lucky-full.png"
+      alt="Lucky"
+    >
+
+    <h2 data-popup-i18n="title">
+      Vous avez trouvé Lucky! 🐕
+    </h2>
+
+    <p
+      class="lucky-modal-intro"
+      data-popup-i18n="intro"
+    >
+      Présentez ce passcode chez Ramen Misoya Ouest-de-l’Île pour profiter de l’une des deux offres secrètes.
+    </p>
+
+    <div class="lucky-passcode">
+
+      <span data-popup-i18n="passcodeLabel">
+        VOTRE PASSCODE
+      </span>
+
+      <strong>
+        Where is Lucky?
+      </strong>
+
+    </div>
+
+    <div class="lucky-modal-details">
+
+      <p>
+        📅
+        <strong data-popup-i18n="dates">
+          Valide du 10 au 20 septembre 2026 inclusivement
+        </strong>
+      </p>
+
+      <p>
+        📍
+        <strong data-popup-i18n="locationOnly">
+          Uniquement chez Ramen Misoya Ouest-de-l’Île
+        </strong>
+      </p>
+
+      <p class="lucky-address">
+        3687 boul. Saint-Jean<br>
+        Dollard-des-Ormeaux, QC H9G 1T2
+      </p>
+
+    </div>
+
+    <button
+      class="lucky-modal-button"
+      type="button"
+      onclick="closeLuckyModal()"
+      data-popup-i18n="button"
+    >
+      Parfait! 🐾
+    </button>
+
+  </div>
+
+</div>
 
 <script>
 
